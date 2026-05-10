@@ -94,15 +94,17 @@
      3D 卡片倾斜 + 悬停遮罩注入
      ===================================================== */
   document.querySelectorAll('.work-card').forEach(card => {
-    /* 注入遮罩 */
-    const overlay = document.createElement('div');
-    overlay.className = 'work-hover-overlay';
-    const titleEl = card.querySelector('.work-title');
-    const titleSpan = document.createElement('span');
-    titleSpan.className = 'work-hover-title';
-    titleSpan.textContent = titleEl ? titleEl.textContent : '';
-    overlay.appendChild(titleSpan);
-    card.appendChild(overlay);
+    /* 新版 .work-item 已内置 .work-info-overlay，跳过旧遮罩注入 */
+    if (!card.classList.contains('work-item')) {
+      const overlay = document.createElement('div');
+      overlay.className = 'work-hover-overlay';
+      const titleEl = card.querySelector('.work-title');
+      const titleSpan = document.createElement('span');
+      titleSpan.className = 'work-hover-title';
+      titleSpan.textContent = titleEl ? titleEl.textContent : '';
+      overlay.appendChild(titleSpan);
+      card.appendChild(overlay);
+    }
 
     if (isTouch()) return;
 
@@ -140,6 +142,7 @@
      ===================================================== */
   const lightbox   = document.getElementById('lightbox');
   const lbImg      = document.getElementById('lightboxImg');
+  const lbVideo    = document.getElementById('lightboxVideo');
   const lbCaption  = document.getElementById('lightboxCaption');
   const imgWrap    = lightbox && lightbox.querySelector('.lightbox-img-wrap');
 
@@ -174,15 +177,27 @@
     /* 切换到指定卡片 */
     function goTo(idx) {
       cur = ((idx % cards.length) + cards.length) % cards.length;
-      const card  = cards[cur];
-      const thumb = card.querySelector('.work-thumb');
-      const title = card.querySelector('.work-title');
+      const card    = cards[cur];
+      const thumb   = card.querySelector('.work-thumb');
+      const title   = card.querySelector('.work-title');
+      const isVideo = card.dataset.type === 'video';
 
-      lbImg.style.background      = thumb ? thumb.style.background      || '' : '';
-      lbImg.style.backgroundColor = thumb ? thumb.style.backgroundColor || '' : '';
-      lbCaption.textContent        = title ? title.textContent : '';
-      counter.textContent          = `${cur + 1} / ${cards.length}`;
-      playEnter();
+      lbCaption.textContent = title ? title.textContent : '';
+      counter.textContent   = `${cur + 1} / ${cards.length}`;
+
+      if (isVideo) {
+        lightbox.classList.add('video-mode');
+        if (lbVideo) {
+          lbVideo.src = card.dataset.src || '';
+          lbVideo.load();
+        }
+      } else {
+        lightbox.classList.remove('video-mode');
+        if (lbVideo) { lbVideo.pause(); lbVideo.src = ''; }
+        lbImg.style.background      = thumb ? thumb.style.background      || '' : '';
+        lbImg.style.backgroundColor = thumb ? thumb.style.backgroundColor || '' : '';
+        playEnter();
+      }
     }
 
     /* 侦听 lightbox 打开（由 script.js 设置 .open），同步当前索引 */

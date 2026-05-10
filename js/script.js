@@ -139,25 +139,36 @@
   const lightbox        = $('#lightbox');
   const lightboxClose   = $('#lightboxClose');
   const lightboxImg     = $('#lightboxImg');
+  const lightboxVideo   = $('#lightboxVideo');
   const lightboxCaption = $('#lightboxCaption');
 
   function openLightbox(card) {
-    const thumb = $('.work-thumb', card);
-    const title = $('.work-title', card);
-
-    lightboxImg.style.background = thumb
-      ? thumb.style.background || thumb.style.backgroundColor
-      : 'var(--swirl)';
-
-    lightboxImg.style.backgroundColor = thumb ? thumb.style.backgroundColor : '';
+    const thumb   = $('.work-thumb', card);
+    const title   = $('.work-title', card);
+    const isVideo = card.dataset.type === 'video';
 
     lightboxCaption.textContent = title ? title.textContent : '';
+
+    if (isVideo) {
+      lightbox.classList.add('video-mode');
+      if (lightboxVideo) {
+        lightboxVideo.src = card.dataset.src || '';
+        lightboxVideo.load();
+      }
+    } else {
+      lightbox.classList.remove('video-mode');
+      lightboxImg.style.background      = thumb ? thumb.style.background || thumb.style.backgroundColor : 'var(--swirl)';
+      lightboxImg.style.backgroundColor = thumb ? thumb.style.backgroundColor : '';
+    }
+
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
 
   function closeLightbox() {
     lightbox.classList.remove('open');
+    lightbox.classList.remove('video-mode');
+    if (lightboxVideo) { lightboxVideo.pause(); lightboxVideo.src = ''; }
     document.body.style.overflow = '';
   }
 

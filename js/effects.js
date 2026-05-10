@@ -109,97 +109,53 @@
   }
 
   /* =====================================================
-     4. 作品列表 + 悬浮图片预览
+     4. 作品筛选网格
      ===================================================== */
-  const cards     = [...document.querySelectorAll('.work-card')];
-  const worksGrid = document.querySelector('.works-grid');
-  const worksInner = document.querySelector('.works-inner');
+  const filterBtns   = [...document.querySelectorAll('.filter-btn')];
+  const workItems    = [...document.querySelectorAll('.work-item')];
+  const visibleCount = document.getElementById('visibleCount');
 
-  if (!cards.length || !worksGrid || !worksInner) return;
+  if (!filterBtns.length || !workItems.length) return;
 
-  /* --- 构建列表 --- */
-  const list = document.createElement('div');
-  list.className = 'works-list';
-  list.setAttribute('role', 'list');
+  function updateCount() {
+    const n = workItems.filter(el => !el.classList.contains('wf-hidden') && !el.classList.contains('wf-gone')).length;
+    if (visibleCount) visibleCount.textContent = n;
+  }
 
-  cards.forEach((card, i) => {
-    const thumb = card.querySelector('.work-thumb');
-    const title = card.querySelector('.work-title');
+  function filterWorks(cat) {
+    workItems.forEach(item => {
+      const match = cat === 'all' || item.dataset.category === cat;
 
-    const item = document.createElement('div');
-    item.className = 'wl-item';
-    item.dataset.idx = i;
-    item.setAttribute('role', 'listitem');
-    item.setAttribute('tabindex', '0');
-    item.setAttribute('aria-label', title ? title.textContent : `作品 ${i + 1}`);
-
-    item.innerHTML =
-      `<span class="wl-num">${String(i + 1).padStart(2, '0')}</span>` +
-      `<span class="wl-title-text">${title ? title.textContent : ''}</span>` +
-      `<span class="wl-arrow">&#8594;</span>`;
-
-    /* 缓存缩略图背景色，供预览卡片使用 */
-    item._bg = thumb
-      ? (thumb.style.backgroundColor || thumb.style.background || '#1a2a4a')
-      : '#1a2a4a';
-
-    list.appendChild(item);
-  });
-
-  /* 插到标题下方，隐藏原网格（lightbox 逻辑仍依赖原 card 节点） */
-  worksInner.insertBefore(list, worksGrid);
-  worksGrid.style.display = 'none';
-
-  /* --- 悬浮预览 --- */
-  const preview = document.createElement('div');
-  preview.id = 'works-preview';
-  const wpInner = document.createElement('div');
-  wpInner.className = 'wp-inner';
-  preview.appendChild(wpInner);
-  document.body.appendChild(preview);
-
-  /* 平滑跟随位置（插值动画） */
-  let px = -400, py = -400;
-  let tx = -400, ty = -400;
-
-  (function trackPreview() {
-    px += (tx - px) * 0.09;
-    py += (ty - py) * 0.09;
-    preview.style.left = px + 'px';
-    preview.style.top  = py + 'px';
-    requestAnimationFrame(trackPreview);
-  })();
-
-  list.querySelectorAll('.wl-item').forEach(item => {
-    item.addEventListener('mouseenter', e => {
-      wpInner.style.backgroundColor = item._bg;
-      preview.classList.add('active');
-      tx = e.clientX + 28;
-      ty = e.clientY - 145;
-      document.body.classList.add('cur-card');
-    });
-
-    item.addEventListener('mousemove', e => {
-      tx = e.clientX + 28;
-      ty = e.clientY - 145;
-    });
-
-    item.addEventListener('mouseleave', () => {
-      preview.classList.remove('active');
-      document.body.classList.remove('cur-card');
-    });
-
-    /* 点击 → 触发对应卡片的 lightbox */
-    item.addEventListener('click', () => {
-      cards[parseInt(item.dataset.idx)]?.click();
-    });
-
-    item.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        cards[parseInt(item.dataset.idx)]?.click();
+      if (match) {
+        /* 显示：先移除 wf-gone，下一帧再移除 wf-hidden（触发 opacity 过渡） */
+        item.classList.remove('wf-gone');
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => item.classList.remove('wf-hidden'));
+        });
+      } else {
+        /* 隐藏：先加 wf-hidden（触发 opacity 过渡），350ms 后再加 wf-gone */
+        item.classList.add('wf-hidden');
+        setTimeout(() => {
+          if (item.classList.contains('wf-hidden')) item.classList.add('wf-gone');
+        }, 350);
       }
     });
+
+    setTimeout(updateCount, 360);
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filterWorks(btn.dataset.filter);
+    });
+  });
+
+  /* 光标状态 */
+  workItems.forEach(item => {
+    item.addEventListener('mouseenter', () => document.body.classList.add('cur-card'));
+    item.addEventListener('mouseleave', () => document.body.classList.remove('cur-card'));
   });
 
 })();

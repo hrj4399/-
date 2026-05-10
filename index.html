@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/star-animation.css" />
   <link rel="stylesheet" href="css/interaction.css" />
   <link rel="stylesheet" href="css/effects.css" />
+  <link rel="stylesheet" href="css/works.css" />
 </head>
 <body>
 
@@ -84,40 +85,231 @@
   <section id="works" class="section works">
     <div class="works-overlay"></div>
     <div class="works-inner">
-      <h2 class="section-title centered italic animate-fadeup">— 近期创作 —</h2>
-      <div class="works-grid">
-        <div class="work-card animate-card" data-index="0">
+      <div class="works-header animate-fadeup">
+        <h2 class="section-title">近期创作</h2>
+        <p class="works-count"><span id="visibleCount">24</span> 件作品</p>
+      </div>
+      <nav class="works-filter animate-fadeup" aria-label="作品筛选">
+        <button class="filter-btn active" data-filter="all">全部</button>
+        <button class="filter-btn" data-filter="oilpaint">油画</button>
+        <button class="filter-btn" data-filter="watercolor">水彩</button>
+        <button class="filter-btn" data-filter="illustration">插画</button>
+        <button class="filter-btn" data-filter="video">视频</button>
+      </nav>
+      <div class="works-grid-v2">
+
+        <!-- 油画 8件 -->
+        <div class="work-item work-card" data-category="oilpaint" data-ratio="portrait">
           <div class="work-thumb" style="background-color:#1a2a4a"></div>
-          <p class="work-title">星夜习作 No.1</p>
+          <div class="work-info-overlay">
+            <span class="work-cat-badge">油画</span>
+            <p class="work-title">星夜习作 No.1</p>
+            <span class="work-year">2024</span>
+          </div>
         </div>
-        <div class="work-card animate-card" data-index="1">
+        <div class="work-item work-card" data-category="oilpaint" data-ratio="square">
           <div class="work-thumb" style="background-color:#2a3a5a"></div>
-          <p class="work-title">晨雾中的河岸</p>
+          <div class="work-info-overlay">
+            <span class="work-cat-badge">油画</span>
+            <p class="work-title">晨雾中的河岸</p>
+            <span class="work-year">2024</span>
+          </div>
         </div>
-        <div class="work-card animate-card" data-index="2">
+        <div class="work-item work-card" data-category="oilpaint" data-ratio="portrait">
           <div class="work-thumb" style="background-color:#1a3a4a"></div>
-          <p class="work-title">光影·午后</p>
+          <div class="work-info-overlay">
+            <span class="work-cat-badge">油画</span>
+            <p class="work-title">光影·午后</p>
+            <span class="work-year">2024</span>
+          </div>
         </div>
-        <div class="work-card animate-card" data-index="3">
+        <div class="work-item work-card" data-category="oilpaint" data-ratio="square">
           <div class="work-thumb" style="background-color:#2a1a4a"></div>
-          <p class="work-title">深蓝的重量</p>
+          <div class="work-info-overlay">
+            <span class="work-cat-badge">油画</span>
+            <p class="work-title">深蓝的重量</p>
+            <span class="work-year">2023</span>
+          </div>
         </div>
-        <div class="work-card animate-card" data-index="4">
+        <div class="work-item work-card" data-category="oilpaint" data-ratio="portrait">
           <div class="work-thumb" style="background-color:#3a2a1a"></div>
-          <p class="work-title">金色麦田</p>
+          <div class="work-info-overlay">
+            <span class="work-cat-badge">油画</span>
+            <p class="work-title">金色麦田</p>
+            <span class="work-year">2023</span>
+          </div>
         </div>
-        <div class="work-card animate-card" data-index="5">
-          <div class="work-thumb" style="background-color:#1a4a3a"></div>
-          <p class="work-title">水面涟漪</p>
-        </div>
-        <div class="work-card animate-card" data-index="6">
+        <div class="work-item work-card" data-category="oilpaint" data-ratio="square">
           <div class="work-thumb" style="background-color:#4a1a2a"></div>
-          <p class="work-title">暮色时分</p>
+          <div class="work-info-overlay">
+            <span class="work-cat-badge">油画</span>
+            <p class="work-title">暮色时分</p>
+            <span class="work-year">2023</span>
+          </div>
         </div>
-        <div class="work-card animate-card" data-index="7">
+        <div class="work-item work-card" data-category="oilpaint" data-ratio="portrait">
+          <div class="work-thumb" style="background-color:#1a4a2a"></div>
+          <div class="work-info-overlay">
+            <span class="work-cat-badge">油画</span>
+            <p class="work-title">林间光束</p>
+            <span class="work-year">2023</span>
+          </div>
+        </div>
+        <div class="work-item work-card" data-category="oilpaint" data-ratio="square">
+          <div class="work-thumb" style="background-color:#3a1a3a"></div>
+          <div class="work-info-overlay">
+            <span class="work-cat-badge">油画</span>
+            <p class="work-title">紫色黄昏</p>
+            <span class="work-year">2022</span>
+          </div>
+        </div>
+
+        <!-- 水彩 6件 -->
+        <div class="work-item work-card" data-category="watercolor" data-ratio="portrait">
+          <div class="work-thumb" style="background-color:#1a4a3a"></div>
+          <div class="work-info-overlay">
+            <span class="work-cat-badge">水彩</span>
+            <p class="work-title">水面涟漪</p>
+            <span class="work-year">2024</span>
+          </div>
+        </div>
+        <div class="work-item work-card" data-category="watercolor" data-ratio="square">
           <div class="work-thumb" style="background-color:#2a4a1a"></div>
-          <p class="work-title">翠绿的呼吸</p>
+          <div class="work-info-overlay">
+            <span class="work-cat-badge">水彩</span>
+            <p class="work-title">翠绿的呼吸</p>
+            <span class="work-year">2024</span>
+          </div>
         </div>
+        <div class="work-item work-card" data-category="watercolor" data-ratio="portrait">
+          <div class="work-thumb" style="background-color:#0a3a5a"></div>
+          <div class="work-info-overlay">
+            <span class="work-cat-badge">水彩</span>
+            <p class="work-title">雨后清晨</p>
+            <span class="work-year">2024</span>
+          </div>
+        </div>
+        <div class="work-item work-card" data-category="watercolor" data-ratio="square">
+          <div class="work-thumb" style="background-color:#4a3a1a"></div>
+          <div class="work-info-overlay">
+            <span class="work-cat-badge">水彩</span>
+            <p class="work-title">秋日枫林</p>
+            <span class="work-year">2023</span>
+          </div>
+        </div>
+        <div class="work-item work-card" data-category="watercolor" data-ratio="portrait">
+          <div class="work-thumb" style="background-color:#2a1a5a"></div>
+          <div class="work-info-overlay">
+            <span class="work-cat-badge">水彩</span>
+            <p class="work-title">月色朦胧</p>
+            <span class="work-year">2023</span>
+          </div>
+        </div>
+        <div class="work-item work-card" data-category="watercolor" data-ratio="square">
+          <div class="work-thumb" style="background-color:#1a5a3a"></div>
+          <div class="work-info-overlay">
+            <span class="work-cat-badge">水彩</span>
+            <p class="work-title">春水初生</p>
+            <span class="work-year">2022</span>
+          </div>
+        </div>
+
+        <!-- 插画 6件 -->
+        <div class="work-item work-card" data-category="illustration" data-ratio="square">
+          <div class="work-thumb" style="background-color:#3a0a4a"></div>
+          <div class="work-info-overlay">
+            <span class="work-cat-badge">插画</span>
+            <p class="work-title">梦境旅人</p>
+            <span class="work-year">2024</span>
+          </div>
+        </div>
+        <div class="work-item work-card" data-category="illustration" data-ratio="portrait">
+          <div class="work-thumb" style="background-color:#0a2a4a"></div>
+          <div class="work-info-overlay">
+            <span class="work-cat-badge">插画</span>
+            <p class="work-title">星际少女</p>
+            <span class="work-year">2024</span>
+          </div>
+        </div>
+        <div class="work-item work-card" data-category="illustration" data-ratio="square">
+          <div class="work-thumb" style="background-color:#4a2a0a"></div>
+          <div class="work-info-overlay">
+            <span class="work-cat-badge">插画</span>
+            <p class="work-title">城市速写</p>
+            <span class="work-year">2024</span>
+          </div>
+        </div>
+        <div class="work-item work-card" data-category="illustration" data-ratio="portrait">
+          <div class="work-thumb" style="background-color:#1a4a4a"></div>
+          <div class="work-info-overlay">
+            <span class="work-cat-badge">插画</span>
+            <p class="work-title">深海幻想</p>
+            <span class="work-year">2023</span>
+          </div>
+        </div>
+        <div class="work-item work-card" data-category="illustration" data-ratio="square">
+          <div class="work-thumb" style="background-color:#4a4a0a"></div>
+          <div class="work-info-overlay">
+            <span class="work-cat-badge">插画</span>
+            <p class="work-title">黄金时代</p>
+            <span class="work-year">2023</span>
+          </div>
+        </div>
+        <div class="work-item work-card" data-category="illustration" data-ratio="portrait">
+          <div class="work-thumb" style="background-color:#3a3a3a"></div>
+          <div class="work-info-overlay">
+            <span class="work-cat-badge">插画</span>
+            <p class="work-title">灰色地带</p>
+            <span class="work-year">2022</span>
+          </div>
+        </div>
+
+        <!-- 视频 4件 -->
+        <div class="work-item work-card" data-category="video" data-type="video" data-src="" data-ratio="square">
+          <div class="work-thumb" style="background-color:#0a1a3a"></div>
+          <div class="work-info-overlay">
+            <span class="work-cat-badge">视频</span>
+            <p class="work-title">创作过程 No.1</p>
+            <span class="work-year">2024</span>
+          </div>
+          <div class="work-play-btn" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </div>
+        <div class="work-item work-card" data-category="video" data-type="video" data-src="" data-ratio="square">
+          <div class="work-thumb" style="background-color:#1a0a3a"></div>
+          <div class="work-info-overlay">
+            <span class="work-cat-badge">视频</span>
+            <p class="work-title">光与影的对话</p>
+            <span class="work-year">2024</span>
+          </div>
+          <div class="work-play-btn" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </div>
+        <div class="work-item work-card" data-category="video" data-type="video" data-src="" data-ratio="square">
+          <div class="work-thumb" style="background-color:#2a0a2a"></div>
+          <div class="work-info-overlay">
+            <span class="work-cat-badge">视频</span>
+            <p class="work-title">写生记录·西湖</p>
+            <span class="work-year">2023</span>
+          </div>
+          <div class="work-play-btn" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </div>
+        <div class="work-item work-card" data-category="video" data-type="video" data-src="" data-ratio="square">
+          <div class="work-thumb" style="background-color:#0a2a2a"></div>
+          <div class="work-info-overlay">
+            <span class="work-cat-badge">视频</span>
+            <p class="work-title">展览回顾 2023</p>
+            <span class="work-year">2023</span>
+          </div>
+          <div class="work-play-btn" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -241,6 +433,7 @@
     <button class="lightbox-close" id="lightboxClose" aria-label="关闭">✕</button>
     <div class="lightbox-img-wrap">
       <div class="lightbox-img" id="lightboxImg"></div>
+      <video id="lightboxVideo" class="lightbox-video" controls playsinline preload="none"></video>
       <p class="lightbox-caption" id="lightboxCaption"></p>
     </div>
   </div>
