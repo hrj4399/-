@@ -1,0 +1,203 @@
+/* =====================================================
+   高级视觉效果
+   预加载 · 噪点纹理 · 文字乱码 · 作品列表悬浮预览
+   ===================================================== */
+
+/* =====================================================
+   预加载
+   ===================================================== */
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #0a0a2e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  clip-path: inset(0 0 0% 0);
+  transition: clip-path 0.85s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+#preloader.pl-hide {
+  clip-path: inset(0 0 100% 0);
+  pointer-events: none;
+}
+
+.pl-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.42em;
+  color: rgba(245, 200, 66, 0.55);
+  text-transform: uppercase;
+  opacity: 0;
+  animation: plFadeUp 0.5s 0.2s ease forwards;
+}
+
+.pl-tagline {
+  font-family: 'Palatino Linotype', Palatino, Georgia, serif;
+  font-style: italic;
+  font-size: clamp(0.95rem, 2.5vw, 1.3rem);
+  color: rgba(220, 232, 245, 0.45);
+  letter-spacing: 0.22em;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: plFadeUp 0.6s 0.5s ease forwards;
+}
+
+.pl-line-wrap {
+  width: 160px;
+  height: 1px;
+  background: rgba(245, 200, 66, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.pl-line-fill {
+  position: absolute;
+  inset: 0;
+  width: 0%;
+  background: linear-gradient(90deg, transparent, #f5c842, transparent);
+  animation: plLine 0.9s 0.85s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes plFadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes plLine {
+  to { width: 100%; }
+}
+
+/* =====================================================
+   噪点纹理叠加层
+   ===================================================== */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9995;
+  opacity: 0.048;
+  mix-blend-mode: overlay;
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+/* =====================================================
+   作品列表
+   ===================================================== */
+.works-list {
+  width: 100%;
+  border-top: 1px solid rgba(245, 200, 66, 0.10);
+  margin-bottom: 0.5rem;
+}
+
+.wl-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+  padding: 1.15rem 0.4rem;
+  border-bottom: 1px solid rgba(245, 200, 66, 0.08);
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+/* 扫光：从左向右填充 */
+.wl-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  width: 0; height: 100%;
+  background: rgba(245, 200, 66, 0.038);
+  transition: width 0.48s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+.wl-item:hover::before,
+.wl-item:focus-visible::before { width: 100%; }
+
+.wl-num {
+  font-size: 0.70rem;
+  letter-spacing: 0.12em;
+  color: rgba(245, 200, 66, 0.42);
+  min-width: 1.8rem;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.28s;
+}
+.wl-item:hover .wl-num { color: rgba(245, 200, 66, 0.75); }
+
+.wl-title-text {
+  flex: 1;
+  font-family: 'Palatino Linotype', Palatino, Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.25rem, 2.8vw, 2rem);
+  color: rgba(220, 232, 245, 0.78);
+  transition: color 0.28s ease, letter-spacing 0.28s ease;
+}
+.wl-item:hover .wl-title-text,
+.wl-item:focus-visible .wl-title-text {
+  color: #f5c842;
+  letter-spacing: 0.03em;
+}
+
+.wl-arrow {
+  flex-shrink: 0;
+  font-size: 1.05rem;
+  color: #f5c842;
+  opacity: 0;
+  transform: translateX(-14px);
+  transition: opacity 0.28s, transform 0.28s;
+}
+.wl-item:hover .wl-arrow,
+.wl-item:focus-visible .wl-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* =====================================================
+   悬浮预览卡片
+   ===================================================== */
+#works-preview {
+  position: fixed;
+  width: 186px;
+  height: 248px;
+  pointer-events: none;
+  z-index: 600;
+  border-radius: 3px;
+  border: 1px solid rgba(245, 200, 66, 0.22);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55),
+              0 0 0 1px rgba(255,255,255,0.04);
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.86) rotate(-1.8deg);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+  will-change: left, top;
+}
+
+#works-preview.active {
+  opacity: 1;
+  transform: scale(1) rotate(-0.8deg);
+}
+
+.wp-inner {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: background-color 0.2s ease;
+}
+
+/* =====================================================
+   响应式
+   ===================================================== */
+@media (max-width: 767px) {
+  .wl-title-text { font-size: 1.15rem; }
+  .wl-item       { gap: 1rem; padding: 1rem 0.2rem; }
+  #works-preview { display: none; }
+}
+
+@media (max-width: 480px) {
+  .wl-title-text { font-size: 1rem; }
+}
