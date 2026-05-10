@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>视觉艺术家 — 个人主页</title>
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/star-animation.css" />
 </head>
 <body>
 
@@ -25,14 +26,17 @@
 
   <!-- ===== 1. HERO ===== -->
   <section id="home" class="section hero">
+    <canvas id="starCanvas"></canvas>
     <div class="hero-overlay"></div>
     <div class="hero-content animate-fadeup">
-      <span class="eyebrow">VISUAL ARTIST</span>
-      <h1 class="hero-name">[姓名]</h1>
-      <p class="hero-sub">光影与笔触的探索者</p>
-      <div class="hero-btns">
-        <a href="#works" class="btn btn-gold">探索作品</a>
-        <a href="#about" class="btn btn-ghost">了解我</a>
+      <div class="hero-float-wrap">
+        <span class="eyebrow">VISUAL ARTIST</span>
+        <h1 class="hero-name">[姓名]</h1>
+        <p class="hero-sub">光影与笔触的探索者</p>
+        <div class="hero-btns">
+          <a href="#works" class="btn btn-gold">探索作品</a>
+          <a href="#about" class="btn btn-ghost">了解我</a>
+        </div>
       </div>
     </div>
     <a href="#about" class="scroll-hint">↓ 向下滚动，展开画卷</a>
@@ -233,5 +237,6 @@
   </div>
 
   <script src="js/script.js"></script>
+  <script src="js/star-animation.js"></script>
 </body>
 </html>

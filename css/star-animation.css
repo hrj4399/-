@@ -1,0 +1,64 @@
+/* =====================================================
+   星空动效补充样式 — Spellverse 风格
+   ===================================================== */
+
+/* Canvas 绝对定位铺满 hero，z-index 在 overlay 之上、文字之下 */
+#starCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* hero-content 层级从 1 提到 2，保持在 canvas 上方 */
+.hero-content {
+  z-index: 2;
+}
+
+/* scroll-hint 层级也提升 */
+.scroll-hint {
+  z-index: 2;
+}
+
+/* =====================================================
+   hero-float-wrap：持续浮动，不影响父元素的 fade-up transition
+   ===================================================== */
+.hero-float-wrap {
+  animation: heroFloat 7s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes heroFloat {
+  0%,  100% { transform: translateY(0px); }
+  50%        { transform: translateY(-14px); }
+}
+
+/* =====================================================
+   标题名字：金色光晕脉动
+   ===================================================== */
+.hero-name {
+  animation: namePulse 4s ease-in-out infinite;
+}
+
+@keyframes namePulse {
+  0%,  100% {
+    text-shadow: 0 0 30px rgba(245,200,66,0.25),
+                 0 4px 24px rgba(0,0,0,0.60);
+  }
+  50% {
+    text-shadow: 0 0 55px rgba(245,200,66,0.55),
+                 0 4px 24px rgba(0,0,0,0.60),
+                 0 0 90px rgba(245,200,66,0.20);
+  }
+}
+
+/* =====================================================
+   作品卡片悬停升级：上浮感更强
+   ===================================================== */
+.work-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 16px 48px rgba(245,200,66,0.20);
+}
