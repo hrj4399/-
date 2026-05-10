@@ -14,9 +14,13 @@
 
   <!-- ===== 预加载 ===== -->
   <div id="preloader" aria-hidden="true">
-    <span class="pl-label">Visual Artist</span>
-    <p class="pl-tagline">以光为笔，以梦为墨</p>
-    <div class="pl-line-wrap"><div class="pl-line-fill"></div></div>
+    <div class="pl-curtain pl-curtain-top"></div>
+    <div class="pl-curtain pl-curtain-bottom"></div>
+    <div class="pl-body">
+      <span class="pl-label">Visual Artist</span>
+      <p class="pl-tagline">以光为笔，以梦为墨</p>
+      <div class="pl-line-wrap"><div class="pl-line-fill"></div></div>
+    </div>
   </div>
 
   <!-- ===== 导航栏 ===== -->
@@ -48,6 +52,40 @@
           <a href="#about" class="btn btn-ghost">了解我</a>
         </div>
       </div>
+    </div>
+    <!-- 画家小人 -->
+    <div class="hero-mascot" aria-hidden="true">
+      <svg class="mascot-svg" viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="50" cy="147" rx="20" ry="4" fill="rgba(245,200,66,0.12)"/>
+        <rect class="mascot-leg-l" x="36" y="102" width="12" height="30" rx="6" fill="#1a2a4a"/>
+        <rect class="mascot-leg-r" x="52" y="102" width="12" height="30" rx="6" fill="#1a2a4a"/>
+        <ellipse cx="40" cy="134" rx="10" ry="5" fill="#0a0a20"/>
+        <ellipse cx="60" cy="134" rx="10" ry="5" fill="#0a0a20"/>
+        <rect x="25" y="60" width="50" height="46" rx="12" fill="#dce8f5"/>
+        <rect x="33" y="64" width="34" height="38" rx="6" fill="rgba(245,200,66,0.75)"/>
+        <circle cx="41" cy="74" r="3" fill="#3a7abf" opacity="0.7"/>
+        <circle cx="57" cy="82" r="2.5" fill="#e05a3a" opacity="0.7"/>
+        <circle cx="44" cy="89" r="2" fill="#5aae6a" opacity="0.7"/>
+        <rect x="9" y="66" width="17" height="9" rx="4.5" fill="#f5c842" transform="rotate(28,17,70)"/>
+        <ellipse cx="4" cy="87" rx="12" ry="9" fill="#1a2a4a" transform="rotate(-15,4,87)"/>
+        <circle cx="1" cy="81" r="3" fill="#f5c842"/>
+        <circle cx="10" cy="78" r="2.5" fill="#e05a3a"/>
+        <circle cx="15" cy="87" r="2.5" fill="#3a7abf"/>
+        <circle cx="3" cy="93" r="2.5" fill="#5aae6a"/>
+        <rect x="74" y="66" width="17" height="9" rx="4.5" fill="#f5c842" transform="rotate(-28,83,70)"/>
+        <rect x="88" y="41" width="5" height="28" rx="2.5" fill="#8B6914" transform="rotate(10,90,55)"/>
+        <rect x="87" y="37" width="7" height="10" rx="2" fill="#f5f0dc" transform="rotate(10,90,42)"/>
+        <circle cx="50" cy="35" r="26" fill="#f5c842"/>
+        <ellipse cx="50" cy="13" rx="27" ry="9" fill="#1a1a2e"/>
+        <ellipse cx="46" cy="8" rx="21" ry="14" fill="#1a1a2e"/>
+        <circle cx="43" cy="2" r="4.5" fill="#f5c842"/>
+        <path d="M37 33 Q41 27 46 33" stroke="#1a1a2e" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M54 33 Q58 27 63 33" stroke="#1a1a2e" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <ellipse cx="34" cy="42" rx="6" ry="4" fill="#f09060" opacity="0.32"/>
+        <ellipse cx="66" cy="42" rx="6" ry="4" fill="#f09060" opacity="0.32"/>
+        <path d="M40 47 Q50 56 60 47" stroke="#1a1a2e" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <ellipse cx="50" cy="41" rx="3" ry="2" fill="#3a7abf" opacity="0.45" transform="rotate(-10,50,41)"/>
+      </svg>
     </div>
     <a href="#about" class="scroll-hint">↓ 向下滚动，展开画卷</a>
   </section>
